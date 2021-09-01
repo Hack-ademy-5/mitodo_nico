@@ -13,5 +13,21 @@ class CategoryController extends Controller
         return view("categories");
     }
 
+    public function store(Request $request)
+    {
+        //validar
+        $validatedData = $request->validate([
+            'name'=>'required'
+        ]);
 
+        //guarda en el db
+        $category = new Category;
+
+        $category->name = $validatedData['name'];
+
+        $category->save();
+
+        return back();
+
+    }
 }

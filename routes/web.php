@@ -21,3 +21,5 @@ Route::get('/notes/create',[NoteController::class,'create'])->name('notes.create
 Route::post('/notes',[NoteController::class,'store'])->name('notes.store');
 
 Route::get('/categories',[CategoryController::class,'index'])->name('categories.index');
+
+Route::post('/categories',[CategoryController::class,'store'])->name('categories.store');

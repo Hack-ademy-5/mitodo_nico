@@ -10,5 +10,14 @@
                 </ul>
             </div>
         </div>
+        <div class="row">
+            <div class="col-12">
+                <form action="{{route('categories.store')}}" method="POST">
+                    @csrf
+                    <input type="text" name="name" placeholder="Insert new category">
+                    <button type="submit">Crear</button>
+                </form>
+            </div>
+        </div>
     </div>
 @endsection
