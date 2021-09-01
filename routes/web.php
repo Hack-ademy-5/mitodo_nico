@@ -23,3 +23,5 @@ Route::post('/notes',[NoteController::class,'store'])->name('notes.store');
 Route::get('/categories',[CategoryController::class,'index'])->name('categories.index');
 
 Route::post('/categories',[CategoryController::class,'store'])->name('categories.store');
+
+Route::get('/notes/category/{id}',[NoteController::class,'byCategory'])->name('notes.byCategory');

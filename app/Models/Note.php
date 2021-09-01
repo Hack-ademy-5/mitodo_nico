@@ -10,4 +10,9 @@ class Note extends Model
     use HasFactory;
 
     protected $fillable = ['text'];
+
+    public function category()
+    {
+        return $this->belongsTo(Category::class);
+    }
 }

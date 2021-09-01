@@ -26,7 +26,8 @@ class NoteController extends Controller
     public function store(Request $request)
     {
         $validatedData = $request->validate([
-            'text'=>'required|max:500'
+            'text'=>'required|max:500',
+            'category_id'=>'required'
         ]);
 
         // $note = new Note;
@@ -35,14 +36,26 @@ class NoteController extends Controller
 
         // $note->save();
 
-        // Mass assignment
+        
+        // recuperar la categoria
+        $category = Category::findOrFail($validatedData['category_id']);
 
-        Note::create([
-            'text'=>$validatedData['text']
+        // crear la nota a traves de la relacion notes de category
+        $category->notes()->create([
+            'text'=>$validatedData['text'],
         ]);
 
         //insert into notes (text) values ('nota desde mysql');
 
         return redirect()->route('home');
     }
+
+	public function byCategory($id)
+	{
+		// recuperar las notas con categoria id
+
+        $notes = Note::where('category_id',$id)->get();
+        
+        return view('welcome',compact('notes'));
+	}
 }
