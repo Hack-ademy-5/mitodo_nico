@@ -2,17 +2,19 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use App\Models\Note;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\View;
 
 class NoteController extends Controller
 {
+    
     public function notes()
     {
         // recuperar las notas
         $notes = Note::orderBy('created_at','desc')->get();
         //select * from notes order by created_at desc;
-
         return view("welcome",compact('notes'));
     }
 

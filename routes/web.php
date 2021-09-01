@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\NoteController;
 use Illuminate\Support\Facades\Route;
 
@@ -18,3 +19,5 @@ Route::get('/', [NoteController::class,'notes'])->name('home');
 
 Route::get('/notes/create',[NoteController::class,'create'])->name('notes.create');
 Route::post('/notes',[NoteController::class,'store'])->name('notes.store');
+
+Route::get('/categories',[CategoryController::class,'index'])->name('categories.index');
