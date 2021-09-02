@@ -15,6 +15,25 @@
           <li class="nav-item">
             <a class="nav-link" href="{{route('categories.index')}}">Categories</a>
           </li>
+          @guest
+          <li class="nav-item">
+            <a class="nav-link" href="{{route('register')}}">Register</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{route('login')}}">Login</a>
+          </li>
+          @endguest
+          @auth
+          <li class="nav-item">
+            <a class="nav-link" href="#">{{Auth::user()->name}}</a>
+          </li>
+          <li class="nav-item">
+            <form action="/logout" method="POST">
+              @csrf
+              <button type="submit">Logout</button>
+            </form>
+          </li>
+          @endauth
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
               Categorias

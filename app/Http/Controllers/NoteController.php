@@ -9,11 +9,17 @@ use Illuminate\Support\Facades\View;
 
 class NoteController extends Controller
 {
+    // CRUD
+        // Create
+        // Read (1,todos)
+        // Update
+        // Delete
     
     public function notes()
     {
         // recuperar las notas
         $notes = Note::orderBy('created_at','desc')->get();
+
         //select * from notes order by created_at desc;
         return view("welcome",compact('notes'));
     }

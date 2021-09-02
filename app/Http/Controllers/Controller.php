@@ -13,9 +13,4 @@ class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 
-    public function __construct()
-    {
-        $categories = Category::all();
-        View::share('categories',$categories);
-    }
 }
