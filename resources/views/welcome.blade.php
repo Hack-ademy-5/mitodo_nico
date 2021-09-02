@@ -16,8 +16,14 @@
                       <div>{{$note->created_at}}</div>
                       <div><a href="{{route('notes.byCategory',['id'=>$note->category->id])}}">{{$note->category->name}}</a></div>
                       <div><a href="{{route('notes.byUser',['id'=>$note->user->id])}}">{{$note->user->name}}</a></div>
-                      <a href="#" class="card-link">Card link</a>
-                      <a href="#" class="card-link">Another link</a>
+                      @auth
+                      <form action="{{route('notes.destroy',['id'=>$note->id])}}" method="POST">
+                        @csrf
+                        @method('delete')
+                          <button type="submit" class="btn btn-danger">Delete</button>
+                      </form>
+                      @endauth
+                      <a href="{{route('notes.edit',['id'=>$note->id])}}" class="card-link">Edit</a>
                     </div>
                   </div>
             </div>

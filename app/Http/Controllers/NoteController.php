@@ -90,4 +90,39 @@ class NoteController extends Controller
         
         return view('welcome',compact('notes'));
 	}
+
+	public function destroy($id)
+	{
+		if(!$user = Auth::user()){
+            // vuelve a la ruta donde estaba
+            return redirect()->route('home')->withMessage('No estás autentificado');
+        }
+
+        // recupero la nota que quiero borrar
+        $note = Note::findOrFail($id);
+
+        $note->delete();
+
+        return redirect()->route('home');
+	}
+
+	public function edit($id)
+	{
+        $note = Note::findOrFail($id);
+		return view('note-edit',compact('note'));
+	}
+
+    public function update(Request $request,$id)
+    {
+        $validatedData = $request->validate([
+            'text'=>'required|max:500|min:3',
+            'category_id'=>'required'
+        ]);
+
+        $note = Note::findOrFail($id);
+
+        $note->update($validatedData);
+
+        return redirect()->route('home');
+    }
 }
