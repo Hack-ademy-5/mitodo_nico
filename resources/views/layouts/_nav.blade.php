@@ -28,9 +28,10 @@
             <a class="nav-link" href="#">{{Auth::user()->name}}</a>
           </li>
           <li class="nav-item">
-            <form action="/logout" method="POST">
+            <a id="logout" class="nav-link" href="#">Logout</a>
+
+            <form id="logout-form" action="/logout" method="POST">
               @csrf
-              <button type="submit">Logout</button>
             </form>
           </li>
           @endauth

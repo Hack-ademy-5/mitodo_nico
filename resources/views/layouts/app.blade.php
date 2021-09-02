@@ -18,6 +18,19 @@
 
     <!-- Option 1: Bootstrap Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script>
+    <script>
+      // recuperar la referencia al link logout
+      let logout = document.getElementById('logout')
+      if(logout){
+        // asignar el listener del click
+        logout.addEventListener('click',()=>{
+          // recuperar la referencia al formulario
+          let form = document.getElementById('logout-form')
+          // al hacer click lanzar el submit del formulario
+          form.submit();
+        })
+      }
+    </script>
 
     <!-- Option 2: Separate Popper and Bootstrap JS -->
     <!--
