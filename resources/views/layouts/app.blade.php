@@ -12,6 +12,11 @@
   </head>
   <body>
     @include('layouts._nav')
+    @if(session('message'))
+    <div class="alert alert-danger" role="alert">
+      {{session('message')}}
+    </div>
+    @endif
     @yield('content')
 
     <!-- Optional JavaScript; choose one of the two! -->

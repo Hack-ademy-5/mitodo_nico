@@ -9,12 +9,6 @@
           <li class="nav-item">
             <a class="nav-link active" aria-current="page" href="/">Home</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="{{route('notes.create')}}">Nueva Nota</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="{{route('categories.index')}}">Categories</a>
-          </li>
           @guest
           <li class="nav-item">
             <a class="nav-link" href="{{route('register')}}">Register</a>
@@ -24,6 +18,12 @@
           </li>
           @endguest
           @auth
+          <li class="nav-item">
+            <a class="nav-link" href="{{route('notes.create')}}">Nueva Nota</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{route('categories.index')}}">Categories</a>
+          </li>
           <li class="nav-item">
             <a class="nav-link" href="#">{{Auth::user()->name}}</a>
           </li>
