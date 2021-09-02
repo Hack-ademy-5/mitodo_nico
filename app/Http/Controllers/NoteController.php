@@ -18,10 +18,7 @@ class NoteController extends Controller
     
     public function notes()
     {
-        if(!Auth::user()){
-        // vuelve a la ruta donde estaba
-            return redirect()->route('home')->withMessage('No estás autentificado');
-        }
+
         // recuperar las notas
         $notes = Note::orderBy('created_at','desc')->get();
 
@@ -40,6 +37,11 @@ class NoteController extends Controller
 
     public function store(Request $request)
     {
+        if(!$user = Auth::user()){
+            // vuelve a la ruta donde estaba
+            return redirect()->route('home')->withMessage('No estás autentificado');
+        }
+
         $validatedData = $request->validate([
             'text'=>'required|max:500',
             'category_id'=>'required'
@@ -51,14 +53,21 @@ class NoteController extends Controller
 
         // $note->save();
 
-        
         // recuperar la categoria
         $category = Category::findOrFail($validatedData['category_id']);
 
         // crear la nota a traves de la relacion notes de category
         $category->notes()->create([
             'text'=>$validatedData['text'],
+            'user_id'=>$user->id
         ]);
+
+        // $user->notes()->create([
+        //     [
+        //         'text'=>"fgdhjk",
+        //         'category_id'=>$validatedData['category_id']
+        //     ]
+        // ]);
 
         //insert into notes (text) values ('nota desde mysql');
 
@@ -70,6 +79,14 @@ class NoteController extends Controller
 		// recuperar las notas con categoria id
 
         $notes = Note::where('category_id',$id)->get();
+        
+        return view('welcome',compact('notes'));
+	}
+    public function byUser($id)
+	{
+		// recuperar las notas con categoria id
+
+        $notes = Note::where('user_id',$id)->get();
         
         return view('welcome',compact('notes'));
 	}

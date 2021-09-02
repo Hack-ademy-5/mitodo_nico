@@ -25,3 +25,4 @@ Route::get('/categories',[CategoryController::class,'index'])->name('categories.
 Route::post('/categories',[CategoryController::class,'store'])->name('categories.store');
 
 Route::get('/notes/category/{id}',[NoteController::class,'byCategory'])->name('notes.byCategory');
+Route::get('/notes/user/{id}',[NoteController::class,'byUser'])->name('notes.byUser');
